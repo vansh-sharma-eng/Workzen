@@ -5,6 +5,7 @@
 }
 
 * {
+<<<<<<< HEAD
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -42,4 +43,8 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   transition: all 0.3s ease;
+=======
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 }

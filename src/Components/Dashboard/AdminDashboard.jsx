@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
+<<<<<<< HEAD
 import AdminCards from "../Admin/AdminCards";
 import AdminCharts from "../Admin/Charts/AdminCharts"
 import AdminSidebar from "../layout/Admin/AdminSidebar";
@@ -25,12 +26,40 @@ const { theme } = useTheme();
 const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 const [openEmployeeForm, setOpenEmployeeForm] = useState(false); 
 const { userData, refreshData } = useContext(AuthContext);
+=======
+import AdminCards from "../Employees/AdminCards";
+import AdminSidebar from "../layout/AdminSidebar";
+import AdminEmployeeMessages from "../Employees/AdminEmployeeMessages";
+import AdminTeamPerformance from "../Employees/AdminTeamPerformance";
+import CreateTask from "../Tasks/CreateTask";
+import CreateEmployee from "../Employees/CreateEmployee";
+import AdminHeader from "../layout/AdminHeader";
+import AdminEmployeesPage from "../../Pages/AdminEmployeesPage";
+import AdminLeavePage from "../../Pages/AdminLeavePage";
+
+const AdminDashboard = ({ data, changeuser }) => {
+  const [activePage, setActivePage] = useState(() => {
+    return localStorage.getItem("activePage") || "Overview";
+  });
+
+  const [openTaskForm, setOpenTaskForm] = useState(false);
+  const [openEmployeeForm, setOpenEmployeeForm] = useState(false);
+  const { userData, refreshData } = useContext(AuthContext);
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
   useEffect(() => {
     refreshData();
   }, []);
 
+<<<<<<< HEAD
   const employees = userData?.employeesData || [];
+=======
+  useEffect(() => {
+    localStorage.setItem("activePage", activePage);
+  }, [activePage]);
+
+  const employees = userData.employeesData || [];
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
   const totalEmployees = employees.length;
 
@@ -40,6 +69,7 @@ const { userData, refreshData } = useContext(AuthContext);
 
   const activeEmployees = totalEmployees - onLeaveToday;
 
+<<<<<<< HEAD
   const savedDepartments = JSON.parse(
     localStorage.getItem("departmentData") || "[]"
   );
@@ -47,6 +77,13 @@ const { userData, refreshData } = useContext(AuthContext);
   const totalDepartments =
     savedDepartments.length ||
     [...new Set(employees.map((e) => e.department).filter(Boolean))].length;
+=======
+  const departments = [
+    ...new Set(employees.map((e) => e.department).filter(Boolean)),
+  ];
+
+  const totalDepartments = departments.length;
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
   const totalTasks = employees.reduce(
     (sum, emp) => sum + (emp.taskNumber?.total || 0),
@@ -63,12 +100,27 @@ const { userData, refreshData } = useContext(AuthContext);
     0
   );
 
+<<<<<<< HEAD
   const attendanceRate =
     totalEmployees === 0
       ? 0
       : parseFloat(
           ((activeEmployees / totalEmployees) * 100).toFixed(1)
         );
+=======
+  const completedTasks =
+    totalTasks === 0 ? 0 : Math.floor((completedCount / totalTasks) * 100);
+
+  const monthlySalary = "$0";
+
+  const attendanceRate =
+    totalEmployees === 0
+      ? "0%"
+      : `${(
+          ((totalEmployees - onLeaveToday) / totalEmployees) *
+          100
+        ).toFixed(1)}%`;
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
   const dashboardData = {
     totalEmployees,
@@ -77,6 +129,7 @@ const { userData, refreshData } = useContext(AuthContext);
     totalDepartments,
     totalTasks,
     inProgressTasks,
+<<<<<<< HEAD
     completedCount,
     monthlySalary: "$0",
     attendanceRate: `${attendanceRate}%`,
@@ -185,6 +238,46 @@ case "Payroll & Finance":
                 Tasks
               </h1>
 
+=======
+    completedTasks,
+    monthlySalary,
+    attendanceRate,
+  };
+
+  const renderPage = () => {
+    if (activePage === "Overview")
+      return (
+        <>
+          <AdminHeader
+            setOpenTaskForm={setOpenTaskForm}
+            setOpenEmployeeForm={setOpenEmployeeForm}
+            changeuser={changeuser}
+            data={data}
+          />
+
+          <AdminCards data={dashboardData} />
+
+          <div className="flex gap-4 px-4 pb-6 ml-52">
+            <AdminTeamPerformance data={userData} />
+            <AdminEmployeeMessages />
+          </div>
+        </>
+      );
+
+    if (activePage === "Employees")
+      return (
+        <div className="ml-52 p-6">
+          <AdminEmployeesPage data={data} />
+        </div>
+      );
+
+    if (activePage === "Tasks")
+      return (
+        <div className="ml-52 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-[#f1f5f9] text-2xl font-semibold">Tasks</h1>
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
               <p className="text-[#64748b] text-sm mt-1">
                 Track and manage all tasks
               </p>
@@ -192,12 +285,17 @@ case "Payroll & Finance":
 
             <button
               onClick={() => setOpenTaskForm(true)}
+<<<<<<< HEAD
               className="bg-[#3b82f6] text-white text-sm px-4 py-2 rounded-xl hover:bg-[#2563eb]"
+=======
+              className="bg-[#3b82f6] text-white text-sm px-4 py-2 rounded-xl hover:bg-[#2563eb] transition-all"
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
             >
               + Create Task
             </button>
           </div>
 
+<<<<<<< HEAD
           <p className="text-[#64748b]">
             Tasks page content goes here.
           </p>
@@ -228,10 +326,43 @@ case "Payroll & Finance":
     color: "var(--text-primary)",
   }}
 > {openTaskForm && (
+=======
+          <p className="text-[#64748b]">Tasks page content goes here.</p>
+        </div>
+      );
+
+    if (activePage === "Leaves") {
+      return <AdminLeavePage />;
+    }
+
+    return (
+      <>
+        <AdminHeader
+          setOpenTaskForm={setOpenTaskForm}
+          setOpenEmployeeForm={setOpenEmployeeForm}
+          changeuser={changeuser}
+          data={data}
+        />
+
+        <AdminCards data={dashboardData} />
+
+        <div className="flex gap-4 px-4 pb-6 ml-52">
+          <AdminTeamPerformance data={userData} />
+          <AdminEmployeeMessages />
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0d0f14] overflow-hidden select-none">
+      {openTaskForm && (
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
         <CreateTask setOpenTaskForm={setOpenTaskForm} />
       )}
 
       {openEmployeeForm && (
+<<<<<<< HEAD
         <CreateEmployee
           setOpenEmployeeForm={setOpenEmployeeForm}
         />
@@ -254,6 +385,16 @@ case "Payroll & Finance":
   data={data}
   isSidebarCollapsed={sidebarCollapsed}
 />
+=======
+        <CreateEmployee setOpenEmployeeForm={setOpenEmployeeForm} />
+      )}
+
+      <AdminSidebar
+        data={data}
+        activePage={activePage}
+        setActivePage={setActivePage}
+      />
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
       {renderPage()}
     </div>

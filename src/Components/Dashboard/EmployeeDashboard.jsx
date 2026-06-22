@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+<<<<<<< HEAD
 import EmployeeHeader from "../layout/Employee/EmployeeHeader";
 import EmployeeSidebar from "../layout/Employee/EmployeeSidebar";
 import TaskNumber from "../tasks/TaskNumber";
@@ -17,6 +18,19 @@ const EmployeeDashboard = ({ data, changeuser }) => {
   const [activePage, setActivePage] = useState("Overview");
   const [activeFilter, setActiveFilter] = useState("all");
 const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+=======
+import EmployeeHeader from "../layout/EmployeeHeader";
+import EmployeeSidebar from "../layout/EmployeeSidebar";
+import TaskNumber from "../tasks/TaskNumber";
+import EmployeeTask from "../tasks/EmployeeTask";
+import FilterTask from "../tasks/FilterTask";
+import MyLeave from "../Employees/MyLeave";
+
+const EmployeeDashboard = ({ data, changeuser }) => {
+  const [activePage, setActivePage] = useState("Overview");
+  const [activeFilter, setActiveFilter] = useState("all");
+
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
   const [employeeData, setEmployeeData] = useState(() => {
     const tasks = data?.tasks || [];
     return {
@@ -247,6 +261,7 @@ const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   };
 
   const renderPage = () => {
+<<<<<<< HEAD
   switch (activePage) {
     case "Overview":
       return (
@@ -280,6 +295,15 @@ const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
       return (
         <div className="p-1 px-3">
           <FilterTask
+=======
+    if (activePage === "Overview")
+      return (
+        <div className="flex flex-col object-contain -ml-5 ">
+          <TaskNumber data={employeeData} />
+          <div className="-ml-33">
+             <FilterTask
+            data={employeeData.taskNumber}
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
             activeFilter={activeFilter}
             setActiveFilter={setActiveFilter}
           />
@@ -292,6 +316,7 @@ const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
             acceptTask={acceptTask}
             rejectTask={rejectTask}
           />
+<<<<<<< HEAD
         </div>
       );
 
@@ -387,6 +412,49 @@ const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     </div>
   </div>
 
+=======
+          </div>
+        </div>
+      );
+
+    if (activePage === "My Leave")
+      return (
+        <MyLeave
+          employeeData={employeeData}
+          applyLeave={applyLeave}
+          cancelLeave={cancelLeave}
+        />
+      );
+
+    return (
+      <div className="flex items-center justify-center py-24 text-slate-600 text-sm">
+        Coming soon
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-950 select-none flex">
+  <EmployeeSidebar
+        data={employeeData}
+        activePage={activePage}
+        setActivePage={setActivePage}
+      />
+
+     <div className="flex flex-col flex-1 min-h-screen ml-56 overflow-hidden">
+        <EmployeeHeader
+          data={employeeData}
+          handleLogout={handleLogout}
+          unreadNotifications={unreadNotifications}
+          markNotificationsRead={markNotificationsRead}
+          clearNotifications={clearNotifications}
+        />
+        <main className="flex-1 overflow-y-auto">
+          {renderPage()}
+        </main>
+      </div>
+    </div>
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
   );
 };
 

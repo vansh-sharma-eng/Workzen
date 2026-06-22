@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+<<<<<<< HEAD
    theme: {
     extend: {
       fontFamily: {
@@ -12,5 +13,7 @@ export default defineConfig({
       },
     },
   },
+=======
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
   plugins: [react(), tailwindcss()],
 })

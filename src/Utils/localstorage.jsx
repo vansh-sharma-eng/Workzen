@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Utils/localstorage.js
 
 const employeeData = [
@@ -57,10 +58,31 @@ export const setlocalstorage = () => {
       "hrData",
       JSON.stringify(hrData)
     );
+=======
+const employeeData = []
+
+const admin = [
+  {
+    id: 100,
+    Name: "Admin",
+    email: "admin@example.com",
+    password: "123"
+  }
+];
+
+export const setlocalstorage = () => {
+
+  if (!localStorage.getItem("employeeData")) {
+    localStorage.setItem("employeeData", JSON.stringify(employeeData));
+  }
+  if (!localStorage.getItem("adminData")) {
+    localStorage.setItem("adminData", JSON.stringify(admin));
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
   }
 };
 
 export const getlocalstorage = () => {
+<<<<<<< HEAD
   const employeesData =
     JSON.parse(localStorage.getItem("employeeData")) || [];
 
@@ -75,4 +97,9 @@ export const getlocalstorage = () => {
     adminData,
     hrData,
   };
+=======
+  const employeesData = JSON.parse(localStorage.getItem("employeeData"));
+  const adminData = JSON.parse(localStorage.getItem("adminData"));
+  return { employeesData, adminData };
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 };

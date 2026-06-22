@@ -49,7 +49,11 @@ const MyLeave = ({ employeeData, applyLeave, cancelLeave }) => {
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+<<<<<<< HEAD
   const leaveRequests = employeeData?.leaveRequests || [];
+=======
+  const leaveRequests = employeeData.leaveRequests || [];
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
   // Calendar calculations
   const year = currentDate.getFullYear();
@@ -173,7 +177,11 @@ const MyLeave = ({ employeeData, applyLeave, cancelLeave }) => {
   ];
 
   return (
+<<<<<<< HEAD
     <div className="p-1">
+=======
+    <div className="p-5">
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
       {/* Page Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -195,7 +203,11 @@ const MyLeave = ({ employeeData, applyLeave, cancelLeave }) => {
         {stats.map((s) => (
           <div
             key={s.label}
+<<<<<<< HEAD
             className="bg-[#10111C] border border-[#1E2235] rounded-md p-4"
+=======
+            className="bg-slate-900 border border-slate-800 rounded-xl p-4"
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
           >
             <p className={`text-2xl font-semibold ${s.color}`}>{s.value}</p>
             <p className="text-xs text-slate-500 mt-1">{s.label}</p>
@@ -205,7 +217,11 @@ const MyLeave = ({ employeeData, applyLeave, cancelLeave }) => {
 
       <div className=" grid grid-cols-2 gap-4">
       
+<<<<<<< HEAD
         <div className=" h-85 bg-[#10111C] border border-[#1E2235] rounded-md p-5">
+=======
+        <div className=" h-85 bg-slate-900 border border-slate-800 rounded-xl p-5">
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-slate-200">{monthName}</h2>
             <div className="flex gap-1">
@@ -302,7 +318,11 @@ const MyLeave = ({ employeeData, applyLeave, cancelLeave }) => {
         </div>
 
         {/* ── History ── */}
+<<<<<<< HEAD
         <div className="bg-[#10111C] border border-[#1E2235] rounded-md p-5">
+=======
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
           <h2 className="text-sm font-semibold text-slate-200 mb-4">History</h2>
 
           {leaveRequests.length === 0 ? (
@@ -373,8 +393,13 @@ const MyLeave = ({ employeeData, applyLeave, cancelLeave }) => {
 
       {/* ── Apply Leave Modal ── */}
       {showForm && (
+<<<<<<< HEAD
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/10 backdrop-blur-0">
           <div className="w-[460px] bg-[#10111C] border border-[#1E2235] rounded-2xl px-8 py-7 relative shadow-2xl">
+=======
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="w-[460px] bg-slate-900 border border-slate-700 rounded-2xl px-8 py-7 relative shadow-2xl">
+>>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
             <button
               onClick={() => {
                 setShowForm(false);
