@@ -1,14 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
-<<<<<<< HEAD
-import AdminCards from "../Admin/AdminCards";
-import AdminCharts from "../Admin/Charts/AdminCharts"
+import { useTheme } from "../Context/ThemeContext";
+
+import AdminCards from "../Admin/Others/AdminCards";
+import AdminCharts from "../Admin/Charts/AdminCharts";
 import AdminSidebar from "../layout/Admin/AdminSidebar";
-import CreateTask from "../Tasks/CreateTask";
-import CreateEmployee from "../Employees/CreateEmployee";
 import AdminHeader from "../layout/Admin/AdminHeader";
+
+import CreateTask from "../Tasks/CreateTask";
+import CreateEmployee from "../Admin/CreateEmployees/CreateEmployee";
+
 import AdminEmployeesPage from "../../Pages/AdminPages/AdminEmployeesPage";
-import AdminLeavePage from "../../Pages/AdminPages/AdminLeavePage"
+import AdminLeavePage from "../../Pages/AdminPages/AdminLeavePage";
 import AttendanceDashboard from "../../Pages/AdminPages/AttendanceDashboard";
 import AIInsights from "../../Pages/AdminPages/AIInsightsPage";
 import EmployeeWellness from "../../Pages/EmployeePages/EmployeeWellness";
@@ -16,50 +19,26 @@ import PayrollPage from "../../Pages/AdminPages/PayrollPage";
 import OKRPage from "../../Pages/EmployeePages/OKRPage";
 import DocumentsPage from "../../Pages/AdminPages/DocumentsPage";
 import SettingsPage from "../../Pages/AdminPages/SettingsPage";
-import { useTheme } from "../Context/ThemeContext";
-
 
 const AdminDashboard = ({ data, changeuser }) => {
-const { theme } = useTheme();
+  const { theme } = useTheme();
+
   const [activePage, setActivePage] = useState("Dashboard");
   const [openTaskForm, setOpenTaskForm] = useState(false);
-const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-const [openEmployeeForm, setOpenEmployeeForm] = useState(false); 
-const { userData, refreshData } = useContext(AuthContext);
-=======
-import AdminCards from "../Employees/AdminCards";
-import AdminSidebar from "../layout/AdminSidebar";
-import AdminEmployeeMessages from "../Employees/AdminEmployeeMessages";
-import AdminTeamPerformance from "../Employees/AdminTeamPerformance";
-import CreateTask from "../Tasks/CreateTask";
-import CreateEmployee from "../Employees/CreateEmployee";
-import AdminHeader from "../layout/AdminHeader";
-import AdminEmployeesPage from "../../Pages/AdminEmployeesPage";
-import AdminLeavePage from "../../Pages/AdminLeavePage";
-
-const AdminDashboard = ({ data, changeuser }) => {
-  const [activePage, setActivePage] = useState(() => {
-    return localStorage.getItem("activePage") || "Overview";
-  });
-
-  const [openTaskForm, setOpenTaskForm] = useState(false);
   const [openEmployeeForm, setOpenEmployeeForm] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
   const { userData, refreshData } = useContext(AuthContext);
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
   useEffect(() => {
-    refreshData();
+    refreshData?.();
   }, []);
 
-<<<<<<< HEAD
-  const employees = userData?.employeesData || [];
-=======
   useEffect(() => {
     localStorage.setItem("activePage", activePage);
   }, [activePage]);
 
-  const employees = userData.employeesData || [];
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
+  const employees = userData?.employeesData || [];
 
   const totalEmployees = employees.length;
 
@@ -69,21 +48,15 @@ const AdminDashboard = ({ data, changeuser }) => {
 
   const activeEmployees = totalEmployees - onLeaveToday;
 
-<<<<<<< HEAD
-  const savedDepartments = JSON.parse(
-    localStorage.getItem("departmentData") || "[]"
-  );
-
-  const totalDepartments =
-    savedDepartments.length ||
-    [...new Set(employees.map((e) => e.department).filter(Boolean))].length;
-=======
   const departments = [
-    ...new Set(employees.map((e) => e.department).filter(Boolean)),
+    ...new Set(
+      employees
+        .map((e) => e.department)
+        .filter(Boolean)
+    ),
   ];
 
   const totalDepartments = departments.length;
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
   const totalTasks = employees.reduce(
     (sum, emp) => sum + (emp.taskNumber?.total || 0),
@@ -100,27 +73,13 @@ const AdminDashboard = ({ data, changeuser }) => {
     0
   );
 
-<<<<<<< HEAD
-  const attendanceRate =
-    totalEmployees === 0
-      ? 0
-      : parseFloat(
-          ((activeEmployees / totalEmployees) * 100).toFixed(1)
-        );
-=======
-  const completedTasks =
-    totalTasks === 0 ? 0 : Math.floor((completedCount / totalTasks) * 100);
-
-  const monthlySalary = "$0";
-
   const attendanceRate =
     totalEmployees === 0
       ? "0%"
       : `${(
-          ((totalEmployees - onLeaveToday) / totalEmployees) *
+          (activeEmployees / totalEmployees) *
           100
         ).toFixed(1)}%`;
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
 
   const dashboardData = {
     totalEmployees,
@@ -129,272 +88,148 @@ const AdminDashboard = ({ data, changeuser }) => {
     totalDepartments,
     totalTasks,
     inProgressTasks,
-<<<<<<< HEAD
     completedCount,
     monthlySalary: "$0",
-    attendanceRate: `${attendanceRate}%`,
-  };
-
- const renderPage = () => {
-  switch (activePage) {
-    case "Dashboard":
-      return (
-        <div className="p-6">
-          <AdminCards
-            data={dashboardData}
-            sidebarCollapsed={sidebarCollapsed}
-          />
-
-          <AdminCharts
-            employees={employees}
-            sidebarCollapsed={sidebarCollapsed}
-          />
-        </div>
-      );
-
-    case "AI Insights":
-      return (
-        <div className="p-5 ">
-          <AIInsights
-           sidebarCollapsed={sidebarCollapsed}
-          />
-        </div>
-      );
-
-    case "Employees":
-      return (
-        <div className="p-6 mt-20">
-          <AdminEmployeesPage data={data} 
-          sidebarCollapsed={sidebarCollapsed}
-         />
-        </div>
-      );
-
-    case "Attendance":
-      return (
-        <div className="p-5">
-          < AttendanceDashboard
-           sidebarCollapsed={sidebarCollapsed}
-       />
-        </div>
-      );
-
-    case "Leave Management":
-      return (
-        <div className="p-6">
-          <AdminLeavePage 
-          sidebarCollapsed={sidebarCollapsed}
-      
-          />
-        </div>
-      );
-
-    case "Mood Tracker":
-      return(
-        <div>
-         <EmployeeWellness
-         sidebarCollapsed={sidebarCollapsed}
-       />
-        </div>
-      );
-case "Payroll & Finance":
-  return(
-    <div>
-      <PayrollPage
-        sidebarCollapsed={sidebarCollapsed}/>
-    </div>
-  );
-  
-  case "OKR & Goals":
-    return(
-      <div>
-        <OKRPage
-        sidebarCollapsed={sidebarCollapsed}/>
-      </div>
-    );
-
-    case "Documents":
-    return(
-      <div>
-        <DocumentsPage
-         sidebarCollapsed={sidebarCollapsed}/>
-      </div>
-    );
-    
-    case "Settings":
-      return(
-        <div>
-          <SettingsPage
-           sidebarCollapsed={sidebarCollapsed}/>
-        </div>
-      );
-
-  
-      return (
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h1 className="text-[#f1f5f9] text-2xl font-semibold">
-                Tasks
-              </h1>
-
-=======
-    completedTasks,
-    monthlySalary,
     attendanceRate,
   };
 
   const renderPage = () => {
-    if (activePage === "Overview")
-      return (
-        <>
-          <AdminHeader
-            setOpenTaskForm={setOpenTaskForm}
-            setOpenEmployeeForm={setOpenEmployeeForm}
-            changeuser={changeuser}
+    switch (activePage) {
+      case "Dashboard":
+        return (
+          <div className="p-6">
+            <AdminCards
+              data={dashboardData}
+              sidebarCollapsed={sidebarCollapsed}
+            />
+
+            <AdminCharts
+              employees={employees}
+              sidebarCollapsed={sidebarCollapsed}
+            />
+          </div>
+        );
+
+      case "AI Insights":
+        return (
+         <div className="p-6 ">
+           <AIInsights
+            sidebarCollapsed={sidebarCollapsed}
+          />
+         </div>
+        );
+
+      case "Employees":
+        return (
+         <div className="p-6 mt-20">
+           <AdminEmployeesPage
             data={data}
-          />
-
-          <AdminCards data={dashboardData} />
-
-          <div className="flex gap-4 px-4 pb-6 ml-52">
-            <AdminTeamPerformance data={userData} />
-            <AdminEmployeeMessages />
-          </div>
-        </>
-      );
-
-    if (activePage === "Employees")
-      return (
-        <div className="ml-52 p-6">
-          <AdminEmployeesPage data={data} />
-        </div>
-      );
-
-    if (activePage === "Tasks")
-      return (
-        <div className="ml-52 p-6">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h1 className="text-[#f1f5f9] text-2xl font-semibold">Tasks</h1>
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
-              <p className="text-[#64748b] text-sm mt-1">
-                Track and manage all tasks
-              </p>
-            </div>
-
-            <button
-              onClick={() => setOpenTaskForm(true)}
-<<<<<<< HEAD
-              className="bg-[#3b82f6] text-white text-sm px-4 py-2 rounded-xl hover:bg-[#2563eb]"
-=======
-              className="bg-[#3b82f6] text-white text-sm px-4 py-2 rounded-xl hover:bg-[#2563eb] transition-all"
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
-            >
-              + Create Task
-            </button>
-          </div>
-
-<<<<<<< HEAD
-          <p className="text-[#64748b]">
-            Tasks page content goes here.
-          </p>
-        </div>
-      );
-
-    default:
-      return (
-        <div className="p-6">
-          <AdminCards
-            data={dashboardData}
             sidebarCollapsed={sidebarCollapsed}
           />
+         </div>
+        );
 
-          <AdminCharts
-            employees={employees}
+      case "Attendance":
+        return (
+          <div className="p-6">
+            <AttendanceDashboard
             sidebarCollapsed={sidebarCollapsed}
           />
-        </div>
-      );
-  }
-};
-  return (
-   <div
-  className="min-h-screen overflow-y-auto select-none"
-  style={{
-    backgroundColor: "var(--bg-primary)",
-    color: "var(--text-primary)",
-  }}
-> {openTaskForm && (
-=======
-          <p className="text-[#64748b]">Tasks page content goes here.</p>
-        </div>
-      );
+          </div>
+        );
 
-    if (activePage === "Leaves") {
-      return <AdminLeavePage />;
+      case "Leave Management":
+        return (
+          <div className="p-6">
+            <AdminLeavePage
+            sidebarCollapsed={sidebarCollapsed}
+          />
+          </div>
+        );
+
+      case "Mood Tracker":
+        return (
+          <EmployeeWellness
+            sidebarCollapsed={sidebarCollapsed}
+          />
+        );
+
+      case "Payroll & Finance":
+        return (
+          <PayrollPage
+            sidebarCollapsed={sidebarCollapsed}
+          />
+        );
+
+      case "OKR & Goals":
+        return (
+         <div className="p-6">
+          <h1>Comming Soo...</h1>
+         </div>
+        );
+
+      case "Documents":
+        return (
+          <DocumentsPage
+            sidebarCollapsed={sidebarCollapsed}
+          />
+        );
+
+      case "Settings":
+        return (
+          <SettingsPage
+            sidebarCollapsed={sidebarCollapsed}
+          />
+        );
+
+      default:
+        return (
+          <div className="p-6">
+            <AdminCards
+              data={dashboardData}
+              sidebarCollapsed={sidebarCollapsed}
+            />
+
+            <AdminCharts
+              employees={employees}
+              sidebarCollapsed={sidebarCollapsed}
+            />
+          </div>
+        );
     }
-
-    return (
-      <>
-        <AdminHeader
-          setOpenTaskForm={setOpenTaskForm}
-          setOpenEmployeeForm={setOpenEmployeeForm}
-          changeuser={changeuser}
-          data={data}
-        />
-
-        <AdminCards data={dashboardData} />
-
-        <div className="flex gap-4 px-4 pb-6 ml-52">
-          <AdminTeamPerformance data={userData} />
-          <AdminEmployeeMessages />
-        </div>
-      </>
-    );
   };
 
   return (
     <div className="min-h-screen bg-[#0d0f14] overflow-hidden select-none">
       {openTaskForm && (
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
-        <CreateTask setOpenTaskForm={setOpenTaskForm} />
-      )}
-
-      {openEmployeeForm && (
-<<<<<<< HEAD
-        <CreateEmployee
-          setOpenEmployeeForm={setOpenEmployeeForm}
+        <CreateTask
+          setOpenTaskForm={setOpenTaskForm}
         />
       )}
 
-    <AdminSidebar
-  data={data}
-  activePage={activePage}
-  setActivePage={setActivePage}
-  sidebarCollapsed={sidebarCollapsed}
-  setSidebarCollapsed={setSidebarCollapsed}
-/>
-
-<AdminHeader
-  activePage={activePage}
-  setActivePage={setActivePage}
-  setOpenTaskForm={setOpenTaskForm}
-  setOpenEmployeeForm={setOpenEmployeeForm}
-  changeuser={changeuser}
-  data={data}
-  isSidebarCollapsed={sidebarCollapsed}
-/>
-=======
-        <CreateEmployee setOpenEmployeeForm={setOpenEmployeeForm} />
+      {openEmployeeForm && (
+        <CreateEmployee
+          setOpenEmployeeForm={setOpenEmployeeForm}
+        />
       )}
 
       <AdminSidebar
         data={data}
         activePage={activePage}
         setActivePage={setActivePage}
+        sidebarCollapsed={sidebarCollapsed}
+        setSidebarCollapsed={setSidebarCollapsed}
       />
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
+
+      <AdminHeader
+        activePage={activePage}
+        setActivePage={setActivePage}
+        setOpenTaskForm={setOpenTaskForm}
+        setOpenEmployeeForm={setOpenEmployeeForm}
+        changeuser={changeuser}
+        data={data}
+        isSidebarCollapsed={sidebarCollapsed}
+      />
 
       {renderPage()}
     </div>
@@ -402,3 +237,4 @@ case "Payroll & Finance":
 };
 
 export default AdminDashboard;
+

@@ -1,7 +1,7 @@
-import AIInsightsHeader from "../../Components/Admin/AIInsightsHeader";
-import AttritionRiskPrediction from "../../Components/Admin/AttritionRiskPrediction";
-import AutoPerformanceScores from "../../Components/Admin/AutoPerformanceScores";
-import LeavePredictions from "../../Components/Admin/LeavePredictions";
+import AIInsightsHeader from "../../Components/Admin/Others/AIInsightsHeader";
+import AttritionRiskPrediction from "../../Components/Admin/Others/AttritionRiskPrediction";
+import AutoPerformanceScores from "../../Components/Admin/Others/AutoPerformanceScores";
+import LeavePredictions from "../../Components/Admin/Others/LeavePredictions";
 const AIInsights = ({sidebarCollapsed}) => {
   return (
     <div className={`

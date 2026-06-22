@@ -29,10 +29,10 @@ const EmployeeMoodWellness = () => {
   };
 
   return (
-    <div className="h-screen  flex justify-center items-center px-4 py-2 overflow-y-hidden">
-      <div className="w-120 h-120  bg-[#0B1020] border border-gray-800 -mt-10 rounded-md p-10 shadow-2xl">
+    <div className="max-h-screen overflow-hidden  flex justify-center items-center px-4 py-2 ">
+      <div className="w-100 h-120  bg-[#0B1020] border border-gray-800 mt-3 rounded-md p-6 shadow-2xl">
         {/* Heading */}
-        <div className="text-center">
+        <div className="text-center ">
           <h1 className="text-white text-xl font-bold">
             How are you feeling today, John Doe?
           </h1>

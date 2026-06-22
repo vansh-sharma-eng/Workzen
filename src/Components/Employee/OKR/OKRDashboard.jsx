@@ -2,7 +2,7 @@ import { useState } from "react";
 import { okrData } from "./okrData";
 import OKRCard from "./OKRCard";
 
-const OKRDashboard = () => {
+const OKRDashboard = ({sidebarCollapsed}) => {
   const [quarter, setQuarter] = useState("Q2");
 
   const activeGoals = okrData.length;
@@ -17,7 +17,15 @@ const OKRDashboard = () => {
     );
 
   return (
-    <div className="h-auto  p-2">
+     <div className={`
+      transition-all duration-300
+      ${
+        sidebarCollapsed
+          ? "ml-16 w-[calc(116%)]"
+          : "-ml-2 w-[calc(100%)]"
+      }
+    `}>
+    <div className="h-auto p-2">
       <div className="flex justify-between items-start mb-8">
         <div>
           <h1 className="text-white text-xl font-bold">
@@ -87,6 +95,7 @@ const OKRDashboard = () => {
           />
         ))}
       </div>
+    </div>
     </div>
   );
 };

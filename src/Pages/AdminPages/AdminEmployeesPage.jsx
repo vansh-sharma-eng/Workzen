@@ -4,7 +4,7 @@ import {
   Pencil, Trash2, X, Mail, Phone, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { AuthContext } from "../../Components/Context/AuthProvider";
-import CreateEmployee from "../../Components/Employees/CreateEmployee";
+import CreateEmployee from "../../Components/Admin/CreateEmployees/CreateEmployee";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const DEPARTMENTS = [
@@ -487,7 +487,7 @@ const AdminEmployeesPage = ({sidebarCollapsed}) => {
       )}
 
       {/* ── Top bar ── */}
-      <div className="flex items-center justify-between mb-5 gap-4 flex-wrap">
+      <div className="flex items-center justify-between mb-5  gap-4 flex-wrap">
         <div className="flex items-center gap-3">
           {/* Search */}
           <div className="relative">

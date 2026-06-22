@@ -1,36 +1,32 @@
 import { useState, useEffect } from "react";
-<<<<<<< HEAD
+
+// Layout Imports
 import EmployeeHeader from "../layout/Employee/EmployeeHeader";
 import EmployeeSidebar from "../layout/Employee/EmployeeSidebar";
+
+// Task Imports
 import TaskNumber from "../tasks/TaskNumber";
 import EmployeeTask from "../tasks/EmployeeTask";
-import MyLeave from "../Employees/MyLeave";
-import ActiveTasks from "../EmployeeDashboard/ActiveTasks";
-import WeeklyGlance from "../EmployeeDashboard/WeeklyGlance";
-import RecentActivity from "../EmployeeDashboard/RecentActivity";
 import FilterTask from "../tasks/FilterTask";
-import EmployeeAttendanceDashboard from "../../Pages/EmployeePages/EmployeeAttendanceDashboard"
+
+// Dashboard Imports
+import ActiveTasks from "../Employee/EmployeeDashboard/ActiveTasks";
+import WeeklyGlance from "../Employee/EmployeeDashboard/WeeklyGlance";
+import RecentActivity from "../Employee/EmployeeDashboard/RecentActivity";
+
+// Page Imports
+import MyLeave from "../Admin/CreateEmployees/MyLeave";
+import EmployeeAttendanceDashboard from "../../Pages/EmployeePages/EmployeeAttendanceDashboard";
 import OKRPage from "../../Pages/EmployeePages/OKRPage";
 import EmployeePayrollPage from "../../Pages/EmployeePages/EmployeePayrollPage";
 import EmployeeMoodWellness from "../../Pages/EmployeePages/EmployeeMoodWellness";
 import EmployeeDocumentsPage from "../../Pages/EmployeePages/EmployeeDocumentsPage";
-const EmployeeDashboard = ({ data, changeuser }) => {
-  const [activePage, setActivePage] = useState("Overview");
-  const [activeFilter, setActiveFilter] = useState("all");
-const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-=======
-import EmployeeHeader from "../layout/EmployeeHeader";
-import EmployeeSidebar from "../layout/EmployeeSidebar";
-import TaskNumber from "../tasks/TaskNumber";
-import EmployeeTask from "../tasks/EmployeeTask";
-import FilterTask from "../tasks/FilterTask";
-import MyLeave from "../Employees/MyLeave";
 
 const EmployeeDashboard = ({ data, changeuser }) => {
   const [activePage, setActivePage] = useState("Overview");
   const [activeFilter, setActiveFilter] = useState("all");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
   const [employeeData, setEmployeeData] = useState(() => {
     const tasks = data?.tasks || [];
     return {
@@ -54,6 +50,7 @@ const EmployeeDashboard = ({ data, changeuser }) => {
     if (employeeData.leaveStatus !== "approved") {
       syncToStorage({ ...employeeData, isActive: true });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const syncToStorage = (updated) => {
@@ -261,200 +258,145 @@ const EmployeeDashboard = ({ data, changeuser }) => {
   };
 
   const renderPage = () => {
-<<<<<<< HEAD
-  switch (activePage) {
-    case "Overview":
-      return (
-        <>
-          <div className="px-6 py-1 mt-3">
-            <h1 className="text-2xl font-semibold">
-              Good evening, {employeeData.Name} 👋
-            </h1>
+    switch (activePage) {
+      case "Overview":
+        return (
+          <>
+            <div className="px-6 py-1 mt-3">
+              <h1 className="text-2xl font-semibold">
+                Good evening, {employeeData.Name} 👋
+              </h1>
+              <h5 className="text-xs mt-0.5 text-gray-500 font-medium">
+                Monday, June 15, 2026
+              </h5>
+            </div>
+            <div className="p-6">
+              <TaskNumber data={employeeData} />
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 mt-6">
+                <ActiveTasks />
+                <WeeklyGlance />
+              </div>
+              <div className="mt-6">
+                <RecentActivity />
+              </div>
+            </div>
+          </>
+        );
 
-            <h5 className="text-xs mt-0.5 text-gray-500 font-medium">
-              Monday, June 15, 2026
-            </h5>
-          </div>
-
-          <div className="p-6">
+      case "My Tasks":
+        return (
+          <div className="flex flex-col p-6">
             <TaskNumber data={employeeData} />
-
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 mt-6">
-              <ActiveTasks />
-              <WeeklyGlance />
-            </div>
-
             <div className="mt-6">
-              <RecentActivity />
+              <FilterTask
+                data={employeeData.taskNumber}
+                activeFilter={activeFilter}
+                setActiveFilter={setActiveFilter}
+              />
+              <EmployeeTask
+                data={employeeData}
+                activeFilter={activeFilter}
+                completeTask={completeTask}
+                failedTask={failedTask}
+                reopenTask={reopenTask}
+                acceptTask={acceptTask}
+                rejectTask={rejectTask}
+              />
             </div>
           </div>
-        </>
-      );
+        );
 
-    case "My Tasks":
-      return (
-        <div className="p-1 px-3">
-          <FilterTask
-=======
-    if (activePage === "Overview")
-      return (
-        <div className="flex flex-col object-contain -ml-5 ">
-          <TaskNumber data={employeeData} />
-          <div className="-ml-33">
-             <FilterTask
-            data={employeeData.taskNumber}
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
-          />
-          <EmployeeTask
-            data={employeeData}
-            activeFilter={activeFilter}
-            completeTask={completeTask}
-            failedTask={failedTask}
-            reopenTask={reopenTask}
-            acceptTask={acceptTask}
-            rejectTask={rejectTask}
-          />
-<<<<<<< HEAD
-        </div>
-      );
-
-    case "My Leave":
-      return (
-        <div className="p-6">
-          <MyLeave
-            data={employeeData}
-            applyLeave={applyLeave}
-            cancelLeave={cancelLeave}
-          />
-        </div>
-      );
-
-    case "My Attendance":
-      return (
- <div className="p-6">
-  <EmployeeAttendanceDashboard />
- </div>
-      );
-
-    case "My Goals/OKR":
-      return (
-        <div className="p-6">
-         <OKRPage/>
-        </div>
-      );
-
-    case "My Payroll":
-      return (
-        <div className="p-6">
-         <EmployeePayrollPage/>
-        </div>
-      );
-
-    case "Mood Check-In":
-      return (
-        <div className="">
-         <EmployeeMoodWellness/>
-        </div>
-      );
-
-    case "My Documents":
-      return (
-        <div className="p-6">
-          <EmployeeDocumentsPage/>
-        </div>
-      );
-
-    default:
-      return (
-        <div className="flex justify-center items-center h-[70vh]">
-          <p className="text-slate-500 text-lg">
-            Page not found
-          </p>
-        </div>
-      );
-  }
-};
-
-
-   return (
-  <div
-    className="min-h-screen select-none"
-    style={{
-      backgroundColor: "var(--bg-primary)",
-      color: "var(--text-primary)",
-    }}
-  >
-    <EmployeeSidebar
-      data={employeeData}
-      activePage={activePage}
-      setActivePage={setActivePage}
-      sidebarCollapsed={sidebarCollapsed}
-      setSidebarCollapsed={setSidebarCollapsed}
-    />
-
-    <EmployeeHeader
-      activePage={activePage}
-      changeuser={changeuser}
-      data={employeeData}
-      isSidebarCollapsed={sidebarCollapsed}
-    />
-
-    <div
-      className={`pt-16 transition-all duration-300 ${
-        sidebarCollapsed ? "ml-16" : "ml-55"
-      }`}
-    >
-      <main className="min-h-[calc(100vh-64px)] overflow-y-auto">
-        {renderPage()}
-      </main>
-    </div>
-  </div>
-
-=======
+      case "My Leave":
+        return (
+          <div className="p-1">
+            <MyLeave
+              data={employeeData}
+              applyLeave={applyLeave}
+              cancelLeave={cancelLeave}
+            />
           </div>
-        </div>
-      );
+        );
 
-    if (activePage === "My Leave")
-      return (
-        <MyLeave
-          employeeData={employeeData}
-          applyLeave={applyLeave}
-          cancelLeave={cancelLeave}
-        />
-      );
+      case "My Attendance":
+        return (
+          <div className="p-6">
+            <EmployeeAttendanceDashboard />
+          </div>
+        );
 
-    return (
-      <div className="flex items-center justify-center py-24 text-slate-600 text-sm">
-        Coming soon
-      </div>
-    );
+      case "My Goals/OKR":
+        return (
+          <div className="p-6">
+            <OKRPage />
+          </div>
+        );
+
+      case "My Payroll":
+        return (
+          <div className="p-6">
+            <EmployeePayrollPage />
+          </div>
+        );
+
+      case "Mood Check-In":
+        return (
+          <div className="">
+            <EmployeeMoodWellness />
+          </div>
+        );
+
+      case "My Documents":
+        return (
+          <div className="p-6">
+            <EmployeeDocumentsPage />
+          </div>
+        );
+
+      default:
+        return (
+          <div className="flex justify-center items-center h-[70vh]">
+            <p className="text-slate-500 text-lg">Page not found</p>
+          </div>
+        );
+    }
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 select-none flex">
-  <EmployeeSidebar
+    <div
+      className="min-h-screen select-none flex"
+      style={{
+        backgroundColor: "var(--bg-primary)",
+        color: "var(--text-primary)",
+      }}
+    >
+      <EmployeeSidebar
         data={employeeData}
         activePage={activePage}
         setActivePage={setActivePage}
+        sidebarCollapsed={sidebarCollapsed}
+        setSidebarCollapsed={setSidebarCollapsed}
       />
 
-     <div className="flex flex-col flex-1 min-h-screen ml-56 overflow-hidden">
+      <div
+        className={`flex flex-col flex-1 min-h-screen transition-all duration-300 overflow-hidden ${
+          sidebarCollapsed ? "ml-16" : "ml-56"
+        }`}
+      >
         <EmployeeHeader
+          activePage={activePage}
+          changeuser={changeuser}
           data={employeeData}
+          isSidebarCollapsed={sidebarCollapsed}
           handleLogout={handleLogout}
           unreadNotifications={unreadNotifications}
           markNotificationsRead={markNotificationsRead}
           clearNotifications={clearNotifications}
         />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto pt-16">
           {renderPage()}
         </main>
       </div>
     </div>
->>>>>>> 4c0bb986ca9169755b79d0cb8e8ae4cda7dd1b6a
   );
 };
 

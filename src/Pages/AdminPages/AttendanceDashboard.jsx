@@ -1,7 +1,7 @@
 import React from "react";
-import AttendanceStats from "../../Components/attendance/Admin/AttendanceStats";
-import AttendanceChart from "../../Components/attendance/Admin/AttendanceChart";
-import AttendanceTable from "../../Components/attendance/Admin/AttendanceTable";
+import AttendanceStats from "../../Components/Admin/AdminAttendance/AttendanceStats";
+import AttendanceChart from "../../Components/Admin/AdminAttendance/AttendanceChart";
+import AttendanceTable from "../../Components/Admin/AdminAttendance/AttendanceTable";
 import {
   stats,
   weeklyAttendance,
