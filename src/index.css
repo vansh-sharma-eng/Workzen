@@ -5,12 +5,7 @@
 }
 
 * {
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.dark {
-  --bg-primary: #10111c;
+user-select: none;
   --bg-secondary: #13162a;
   --text-primary: #f1f5f9;
   --border-primary: #1e2235;

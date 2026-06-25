@@ -27,12 +27,12 @@ const HRHeader = ({
 
   const pageMeta = {
     Dashboard: {
-      title: "Dashboard",
-      sub: "Welcome back. Here's your team overview.",
+      title: "HR Dashboard",
+      sub: "Welcome back. Here's your workforce overview.",
     },
     Employees: {
       title: "Employees",
-      sub: "Manage your team members.",
+      sub: "Manage employee information.",
     },
     Attendance: {
       title: "Attendance",
@@ -40,51 +40,56 @@ const HRHeader = ({
     },
     "Leave Management": {
       title: "Leave Management",
-      sub: "Review and manage leave requests.",
+      sub: "Review and approve leave requests.",
+    },
+    Recruitment: {
+      title: "Recruitment",
+      sub: "Manage hiring and candidates.",
+    },
+    Payroll: {
+      title: "Payroll",
+      sub: "Manage employee salaries.",
     },
     Documents: {
       title: "Documents",
-      sub: "Access and manage documents.",
+      sub: "Access and manage HR documents.",
     },
     Settings: {
       title: "Settings",
-      sub: "Configure your preferences.",
+      sub: "Configure HR preferences.",
     },
   };
 
   const current = pageMeta[activePage] || {
     title: activePage || "HR Dashboard",
-    sub: "Company overview and workforce snapshot.",
+    sub: "Welcome back. Here's your workforce overview.",
   };
 
-  const firstName = data?.Name?.split(" ")[0] || "Admin";
+  const firstName = data?.Name?.split(" ")[0] || "HR";
 
   return (
-    <div
+    <header
       className={`fixed top-0 right-0 z-30 h-17 border-b flex items-center justify-between px-6 transition-all duration-300
       ${
         theme === "dark"
           ? "bg-[#10111C] border-[#1E2235]"
           : "bg-white border-slate-200"
       }
-      ${isSidebarCollapsed ? "left-16" : "left-50"}`}
+      ${isSidebarCollapsed ? "left-16" : "left-55"}`}
     >
+      {/* Left */}
       <div>
         <h1
-          className={`text-[19px] ml-5 font-bold ${
-            theme === "dark"
-              ? "text-[#F1F5F9]"
-              : "text-slate-900"
+          className={`text-lg font-bold ${
+            theme === "dark" ? "text-slate-100" : "text-slate-900"
           }`}
         >
           {current.title}
         </h1>
 
         <p
-          className={`text-[13px] ml-5  font-semibold ${
-            theme === "dark"
-              ? "text-[#475569]"
-              : "text-slate-500"
+          className={`text-xs mt-0.5 ${
+            theme === "dark" ? "text-slate-400" : "text-slate-500"
           }`}
         >
           {current.sub.replace(
@@ -94,58 +99,91 @@ const HRHeader = ({
         </p>
       </div>
 
+      {/* Right */}
       <div className="flex items-center gap-3">
+        {/* Theme */}
         <button
           onClick={toggleTheme}
-          className="w-8 h-8 flex items-center justify-center rounded-xl"
+          className={`w-9 h-9 rounded-xl flex items-center justify-center transition
+          ${
+            theme === "dark"
+              ? "hover:bg-[#1A1D2E]"
+              : "hover:bg-slate-100"
+          }`}
         >
-          {theme === "dark" ? (
-            <Sun size={17} />
-          ) : (
-            <Moon size={17} />
-          )}
+          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
         </button>
 
+        {/* Notifications */}
         <button
-          onClick={() =>
-            setShowNotifications(!showNotifications)
-          }
-          className="w-8 h-8 flex items-center justify-center rounded-xl"
+          onClick={() => setShowNotifications(!showNotifications)}
+          className={`relative w-9 h-9 rounded-xl flex items-center justify-center transition
+          ${
+            theme === "dark"
+              ? "hover:bg-[#1A1D2E]"
+              : "hover:bg-slate-100"
+          }`}
         >
-          <Bell size={17} />
+          <Bell size={18} />
+          <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500"></span>
         </button>
 
+        {/* Profile */}
         <div className="relative">
           <button
             onClick={() => setShowMenu(!showMenu)}
             className="flex items-center gap-2"
           >
-            <div className="w-7 h-7 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs">
-              {data?.Name?.charAt(0) || "A"}
+            <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold">
+              {data?.Name?.charAt(0) || "H"}
             </div>
 
-            <ChevronDown size={14} />
+            <ChevronDown
+              size={16}
+              className={`transition-transform ${
+                showMenu ? "rotate-180" : ""
+              }`}
+            />
           </button>
 
           {showMenu && (
-            <div className="absolute right-0 mt-2 w-44 bg-white border rounded-xl shadow-xl p-2">
-              <button className="flex items-center gap-2 w-full p-2">
-                <User size={14} />
+            <div
+              className={`absolute right-0 mt-3 w-48 rounded-xl border shadow-xl overflow-hidden
+              ${
+                theme === "dark"
+                  ? "bg-[#181C2E] border-[#2B3148]"
+                  : "bg-white border-slate-200"
+              }`}
+            >
+              <button
+                className={`flex items-center gap-3 w-full px-4 py-3 text-sm transition
+                ${
+                  theme === "dark"
+                    ? "hover:bg-[#232844]"
+                    : "hover:bg-slate-100"
+                }`}
+              >
+                <User size={16} />
                 Profile
               </button>
 
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 w-full p-2"
+                className={`flex items-center gap-3 w-full px-4 py-3 text-sm text-red-500 transition
+                ${
+                  theme === "dark"
+                    ? "hover:bg-[#232844]"
+                    : "hover:bg-slate-100"
+                }`}
               >
-                <LogOut size={14} />
+                <LogOut size={16} />
                 Logout
               </button>
             </div>
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

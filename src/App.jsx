@@ -144,6 +144,7 @@ const App = () => {
           changeuser={setUser}
           data={loggedInUser}
           handleLogout={handleLogout}
+          setCurrentPage={setCurrentPage}
         />
       )}
 
