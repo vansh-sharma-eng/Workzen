@@ -50,7 +50,7 @@ const AttendanceDashboard = () => {
             employees
           </p>
 
-          <div className="flex items-center gap-2 text-xs">
+          <div className="flex items-center gap-2 text-xs mb-10">
             <button className="w-9 h-9 rounded-lg border border-[#1A2035] bg-[#13141F] hover:bg-[#1A2035] flex items-center justify-center">
               <ChevronLeft size={13} />
             </button>

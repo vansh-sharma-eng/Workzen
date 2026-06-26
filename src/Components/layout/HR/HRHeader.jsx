@@ -6,6 +6,7 @@ import {
   ChevronDown,
   LogOut,
   User,
+  Brain,
 } from "lucide-react";
 import { useTheme } from "../../Context/ThemeContext";
 
@@ -100,7 +101,21 @@ const HRHeader = ({
       </div>
 
       {/* Right */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 mr-3">
+        
+         <button
+          onClick={() => setShowNotifications(!showNotifications)}
+          className={`relative w-9 h-9 rounded-xl flex items-center justify-center transition
+          ${
+            theme === "dark"
+              ? "hover:bg-[#1A1D2E]"
+              : "hover:bg-slate-100"
+          }`}
+        >
+          <Brain size={18} />
+          <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500"></span>
+        </button>
+        
         {/* Theme */}
         <button
           onClick={toggleTheme}

@@ -6,6 +6,7 @@ import {
   ChevronDown,
   LogOut,
   User,
+  Brain,
 } from "lucide-react";
 import { useTheme } from "../../Context/ThemeContext";
 
@@ -61,7 +62,7 @@ const AdminHeader = ({
 
   return (
     <div
-      className={`fixed top-0 right-0 z-30 h-16.5 border-b flex items-center justify-between px-6 transition-all duration-300
+      className={`fixed top-0 right-0 z-30 h-16 border-b flex items-center justify-between px-6 transition-all duration-300
       ${
         theme === "dark"
           ? "bg-[#10111C] border-[#1E2235]"
@@ -95,6 +96,15 @@ const AdminHeader = ({
       </div>
 
       <div className="flex items-center gap-3">
+        <button
+          onClick={() =>
+            setShowNotifications(!showNotifications)
+          }
+          className="w-8 h-8 flex items-center justify-center rounded-xl"
+        >
+          <Brain size={17} />
+        </button>
+
         <button
           onClick={toggleTheme}
           className="w-8 h-8 flex items-center justify-center rounded-xl"

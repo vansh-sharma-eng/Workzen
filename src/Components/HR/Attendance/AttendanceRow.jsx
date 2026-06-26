@@ -1,104 +1,82 @@
 import React from "react";
-import { Eye, Pencil, Clock3 } from "lucide-react";
 
 const AttendanceRow = ({ employee }) => {
-  const getStatusStyle = (status) => {
+  const getBadge = (status) => {
     switch (status) {
       case "Present":
-        return "bg-green-500/15 text-green-400";
-
-      case "Late":
-        return "bg-yellow-500/15 text-yellow-400";
-
-      case "Absent":
-        return "bg-red-500/15 text-red-400";
+        return "bg-neutral-800 text-gray-300";
 
       case "WFH":
-        return "bg-indigo-500/15 text-indigo-400";
+        return "bg-blue-950 text-blue-400";
+
+      case "Absent":
+        return "bg-neutral-800 text-gray-400";
 
       default:
-        return "bg-slate-500/15 text-slate-300";
+        return "bg-neutral-800 text-gray-300";
     }
   };
 
   return (
-    <tr className="border-b border-[#1A2035] hover:bg-[#171A27] transition-all">
-      {/* Employee */}
-      <td className="px-6 py-5">
-        <div className="flex items-center gap-4">
+    <tr className=" bg-[#13141F] border-b border-[#1A2035] hover:bg-[#171823] transition">
+    
+
+      <td className="px-6 py-2 ">
+        <div className="flex items-center gap-3">
           <div
-            className="w-11 h-11 rounded-full flex items-center justify-center text-white font-semibold"
+            className="w-7 h-7 text-[10px] rounded-full flex items-center justify-center text-white font-semibold"
             style={{
-              backgroundColor: employee.avatarColor,
+              background: employee.avatarColor,
             }}
           >
             {employee.initials}
           </div>
 
-          <div>
-            <h3 className="text-white font-medium">
-              {employee.name}
-            </h3>
-
-            <p className="text-xs text-gray-400">
-              {employee.department}
-            </p>
-          </div>
-        </div>
-      </td>
-
-      {/* Check In */}
-      <td className="px-6 py-5 text-gray-300">
-        {employee.checkIn}
-      </td>
-
-      {/* Check Out */}
-      <td className="px-6 py-5 text-gray-300">
-        {employee.checkOut}
-      </td>
-
-      {/* Working Hours */}
-      <td className="px-6 py-5">
-        <div className="flex items-center gap-2">
-          <Clock3
-            size={15}
-            className="text-indigo-400"
-          />
-
-          <span className="text-white">
-            {employee.hours}
+          <span className="text-white text-[13px] font-medium">
+            {employee.name}
           </span>
         </div>
       </td>
 
-      {/* Status */}
-      <td className="px-6 py-5">
+   
+      <td className="px-6 py-2 text-gray-400 text-md">
+        {employee.department}
+      </td>
+
+      {/* Today */}
+
+      <td className="px-6 py-2">
         <span
-          className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusStyle(
-            employee.status
+          className={`px-3 py-1 rounded-full text-xs font-medium ${getBadge(
+            employee.today
           )}`}
         >
-          {employee.status}
+          {employee.today}
         </span>
       </td>
 
-      {/* Actions */}
-      <td className="px-6 py-5">
-        <div className="flex items-center gap-3">
-          <button className="w-9 h-9 rounded-lg bg-[#171A27] hover:bg-[#1A2035] flex items-center justify-center transition-all">
-            <Eye
-              size={17}
-              className="text-gray-400"
-            />
-          </button>
+      
 
-          <button className="w-9 h-9 rounded-lg bg-[#171A27] hover:bg-[#1A2035] flex items-center justify-center transition-all">
-            <Pencil
-              size={17}
-              className="text-indigo-400"
+      <td className="px-6 py-2">
+        <div className="flex items-center gap-3">
+          <div className="w-20 h-1 rounded-full bg-[#13141F] overflow-hidden">
+            <div
+              className="bg-white h-full rounded-full text-center"
+              style={{
+                width: `${employee.weekly}%`,
+              }}
             />
-          </button>
+          </div>
+
+          <span className="text-white text-xs font-medium text-center">
+            {employee.weekly}%
+          </span>
         </div>
+      </td>
+
+
+      <td className="px-15 py-2  text-white font-medium text-sm">
+        {employee.avgHours}
       </td>
     </tr>
   );

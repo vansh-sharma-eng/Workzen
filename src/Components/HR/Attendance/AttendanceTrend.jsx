@@ -48,7 +48,7 @@ const AttendanceTrend = () => {
                 y2="1"
               >
                 <stop
-                  offset="5%"
+                  offset="1%"
                   stopColor="#ff4d6d"
                   stopOpacity={0.45}
                 />
@@ -62,7 +62,7 @@ const AttendanceTrend = () => {
 
             <CartesianGrid
               stroke="#252B42"
-              strokeDasharray="5 5"
+              strokeDasharray="1 1"
             />
 
             <XAxis
@@ -93,7 +93,7 @@ const AttendanceTrend = () => {
               type="monotone"
               dataKey="attendance"
               stroke="#ff4d6d"
-              strokeWidth={3}
+              strokeWidth={1}
               fill="url(#attendanceGradient)"
             />
 
@@ -101,13 +101,13 @@ const AttendanceTrend = () => {
               type="monotone"
               dataKey="attendance"
               stroke="#ff4d6d"
-              strokeWidth={3}
+              strokeWidth={1}
               dot={{
                 fill: "#ff4d6d",
-                r: 4,
+                r: 2,
               }}
               activeDot={{
-                r: 6,
+                r: 2,
               }}
             />
           </AreaChart>

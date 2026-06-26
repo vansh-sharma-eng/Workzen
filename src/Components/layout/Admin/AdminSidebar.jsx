@@ -11,7 +11,6 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-  Brain,
   Building2,
   Zap,
 } from "lucide-react";
@@ -50,11 +49,6 @@ const AdminSidebar = ({
           icon: LayoutDashboard,
           label: "Dashboard",
           badge: null,
-        },
-        {
-          icon: Brain,
-          label: "AI Insights",
-          badge: aiInsightsCount,
         },
       ],
     },
@@ -126,11 +120,11 @@ const AdminSidebar = ({
     color: "#00000",
   }}
 >
-      {/* ── Logo ── */}
-      <div className="px-4 py-4 mt-0.5 border-b border-[#1E2235]">
+      
+      <div className="px-4 py-4  border-b border-[#1E2235]">
         <div className="flex items-center gap-3">
           <div
-            className="w-8 h-8 bg-gradient-to-br from-[#4F46E5] to-[#7C3AED]
+            className="w-8 h-8  bg-gradient-to-br from-[#4F46E5] to-[#7C3AED]
               rounded-xl flex items-center justify-center shadow-lg
               shrink-0 font-bold text-white text-sm"
           >W</div>
@@ -142,11 +136,11 @@ const AdminSidebar = ({
         </div>
       </div>
 
-      {/* ── Nav ── */}
+      
       <div className="flex-1 overflow-y-auto py-3 text-sm px-2 space-y-5 scrollbar-hide">
         {navGroups.map((group) => (
           <div key={group.label}>
-            {/* Group label — hidden when collapsed */}
+           
             {!sidebarCollapsed && (
               <p
                 className="text-[7px] font-semibold text-[#3D4466]
@@ -156,7 +150,7 @@ const AdminSidebar = ({
               </p>
             )}
 
-            <div className="space-y-0.5">
+            <div className="space-y-3 ">
               {group.items.map((item) => {
                 const Icon = item.icon;
                 const isActive = activePage === item.label;
@@ -166,7 +160,7 @@ const AdminSidebar = ({
                     key={item.label}
                     onClick={() => setActivePage(item.label)}
                     title={sidebarCollapsed ? item.label : undefined}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-md
                       text-xs transition-all duration-150 group relative
                       ${sidebarCollapsed ? "justify-center" : ""}
                       ${
@@ -175,7 +169,7 @@ const AdminSidebar = ({
                           : "text-[#bebebe] hover:bg-[#13162A] hover:text-[#9CA3AF]"
                       }`}
                   >
-                    {/* Icon */}
+                   
                     <div className="relative shrink-0">
                       <Icon
                         size={18}
@@ -186,7 +180,7 @@ const AdminSidebar = ({
                             : "text-[#dfdfe0] group-hover:text-[#ebecec]"
                         }
                       />
-                      {/* Dot badge in collapsed mode */}
+                     
                       {sidebarCollapsed && item.badge > 0 && (
                         <span
                           className="absolute -top-1 -right-1 w-2 h-2
@@ -195,7 +189,6 @@ const AdminSidebar = ({
                       )}
                     </div>
 
-                    {/* Label + badge — expanded mode */}
                     {!sidebarCollapsed && (
                       <>
                         <span className="flex-1 text-left font-medium truncate">
@@ -220,19 +213,18 @@ const AdminSidebar = ({
         ))}
       </div>
 
-        {/* Collapse button */}
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className={`w-full flex items-center gap-2 px-3 py-3 mb-2 rounded-xl
-            text-[#c3c3c3] hover:bg-[#13162A] hover:text-[#fefefe]
-            transition-all text-xs font-medium
+          className={`w-full flex items-center gap-2 px-2 py-2 mb-2 
+            text-[#c3c3c3] border border-[#ffffff52] hover:bg-[#13162A] hover:text-[#fefefe]
+            transition-all text-sm font-medium
             ${sidebarCollapsed ? "justify-center" : "justify-center"}`}
         >
           {sidebarCollapsed ? (
-            <ChevronRight size={14} />
+            <ChevronRight size={16} />
           ) : (
             <>
-              <ChevronLeft size={14} />
+              <ChevronLeft size={16} />
               <span>Collapse</span>
             </>
           )}

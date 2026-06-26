@@ -9,9 +9,15 @@ import EmployeeAttendanceCard from "../HR/HrDashboard/EmployeeAttendanceCard";
 import PendingActions from "../HR/HrDashboard/PendingActions";
 import DepartmentStrength from "../HR/HrDashboard/DepartmentStrength";
 import RecentActivity from "../HR/HrDashboard/RecentActivity";
-
 import Employees from "../HR/Employee/Employees";
 import AttendanceDashboard from "../../Pages/HRPages/AttendanceDashboard";
+import LeaveManagement from "../../Pages/HRPages/LeaveManagement";
+import EmployeeWellness from "../../Pages/HRPages/EmployeeWellness";
+import DocumentsPage from "../../Pages/HRPages/DocumentsPage";
+import Announcements from "../../Pages/HRPages/Announcements";
+import Tasks from "../../Pages/HRPages/Tasks";
+import Settings from "../../Pages/HRPages/Settings";
+
 
 const HRDashboard = ({ data, changeuser }) => {
   const [activePage, setActivePage] = useState("Dashboard");
@@ -49,11 +55,9 @@ const HRDashboard = ({ data, changeuser }) => {
       case "Attendance":
         return <AttendanceDashboard/>
       case "Leave Management":
-        return <h1 className="text-2xl font-bold">Leave Management</h1>;
-
-      case "Recruitment":
-        return <h1 className="text-2xl font-bold">Recruitment</h1>;
-
+        return <LeaveManagement/>
+      case "Wellness":
+        return <EmployeeWellness/>
       case "Payroll":
         return <h1 className="text-2xl font-bold">Payroll</h1>;
 
@@ -61,11 +65,13 @@ const HRDashboard = ({ data, changeuser }) => {
         return <h1 className="text-2xl font-bold">Performance</h1>;
 
       case "Documents":
-        return <h1 className="text-2xl font-bold">Documents</h1>;
-
-      case "Settings":
-        return <h1 className="text-2xl font-bold">Settings</h1>;
-
+        return <DocumentsPage/>
+        case "Announcements":
+          return<Announcements/>
+          case "Create Task":
+            return<Tasks/>
+           case "Settings":
+              return <Settings/>
       default:
         return (
           <>

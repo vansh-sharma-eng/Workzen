@@ -58,7 +58,7 @@ const LateArrivals = () => {
           >
             <div className="flex items-center gap-4">
               <div
-                className="w-9 h-9 text-xs rounded-full flex items-center justify-center text-white font-semibold"
+                className="w-8 h-8 text-xs rounded-full flex items-center justify-center text-white font-semibold"
                 style={{
                   backgroundColor: employee.avatarColor,
                 }}
@@ -67,7 +67,7 @@ const LateArrivals = () => {
               </div>
 
               <div>
-                <h3 className="text-white font-medium text-md">
+                <h3 className="text-white font-medium text-xs">
                   {employee.name}
                 </h3>
 
@@ -78,7 +78,7 @@ const LateArrivals = () => {
               </div>
             </div>
 
-            <span className="px-2 py-1 rounded-full bg-yellow-500/15 text-yellow-400 text-xs font-semibold">
+            <span className="px-2 py-1 rounded-full bg-yellow-500/15 text-yellow-400 text-[10px] font-semibold">
               {employee.delay} Late
             </span>
           </div>

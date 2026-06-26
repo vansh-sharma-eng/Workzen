@@ -10,7 +10,10 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-  Brain,
+ 
+  icons, 
+  Megaphone,
+  SquareCheckBig  
 } from "lucide-react";
 import { useTheme } from "../../Context/ThemeContext";
 
@@ -89,15 +92,22 @@ const HRSidebar = ({
         },
       ],
     },
+{label:"Communication",
+  items:[
+    {icon:Megaphone,
+      label:"Announcements",
+    }
+    ,
+    {icon:SquareCheckBig ,
+      label:"Create Task",
+    }
+  ]
 
+},
     {
-      label: "System",
+      label: "Admin",
       items: [
-        {
-          icon: Brain,
-          label: "AI Insights",
-          badge: aiInsightsCount,
-        },
+       
         {
           icon: Settings,
           label: "Settings",
