@@ -23,56 +23,216 @@ A role-based employee and task management web application built with React. Admi
 
 ## Tech Stack
 
-| Technology | Usage |
-|---|---|
-| React | Frontend UI |
-| Tailwind CSS | Styling |
-| LocalStorage | Data persistence |
-| React Router | Page navigation |
-| Context API | Global auth state |
-
----
-
-## Project Structure
-
-```
-src/
-├── Components/
-│   ├── Auth/
-│   │   └── Login.jsx
-│   ├── Dashboard/
-│   │   ├── AdminDashboard.jsx
-│   │   └── EmployeeDashboard.jsx
-│   ├── layout/
-│   │   ├── AdminHeader.jsx
-│   │   ├── AdminSidebar.jsx
-│   │   ├── EmployeeHeader.jsx
-│   │   └── EmployeeSidebar.jsx
-│   ├── employees/
-│   │   ├── AdminCards.jsx
-│   │   ├── AdminTeamPerformance.jsx
-│   │   ├── AdminEmployeeMessages.jsx
-│   │   └── CreateEmployee.jsx
-│   ├── tasks/
-│   │   ├── CreateTask.jsx
-│   │   ├── FilterTask.jsx
-│   │   ├── EmployeeTask.jsx
-│   │   ├── EmployeeAllTask.jsx
-│   │   └── TaskNumber.jsx
-│   └── Context/
-│       └── AuthProvider.jsx
-├── Pages/
-│   ├── LoginPage.jsx
-│   ├── AdminOverviewPage.jsx
-│   ├── AdminEmployeesPage.jsx
-│   ├── AdminTasksPage.jsx
-│   └── EmployeeDashboardPage.jsx
-├── utils/
-│   └── localstorage.js
-├── App.jsx
-├── App.css
-└── index.css
-```
+WorkZen/
+│
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.md
+│   │   ├── feature_request.md
+│   │   └── custom.md
+│   │
+│   ├── workflows/
+│   │   ├── ci.yml
+│   │   ├── deploy.yml
+│   │   └── lint.yml
+│   │
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── CODEOWNERS
+│
+├── public/
+│   ├── favicon.ico
+│   ├── logo.svg
+│   ├── manifest.json
+│   ├── robots.txt
+│   │
+│   ├── images/
+│   │   ├── avatars/
+│   │   ├── backgrounds/
+│   │   ├── illustrations/
+│   │   └── logos/
+│   │
+│   └── icons/
+│
+├── src/
+│
+│   ├── assets/
+│   │   ├── images/
+│   │   ├── icons/
+│   │   ├── fonts/
+│   │   ├── videos/
+│   │   └── animations/
+│   │
+│   ├── components/
+│   │
+│   │   ├── common/
+│   │   │   ├── Button.jsx
+│   │   │   ├── Input.jsx
+│   │   │   ├── Select.jsx
+│   │   │   ├── SearchBar.jsx
+│   │   │   ├── Pagination.jsx
+│   │   │   └── EmptyState.jsx
+│   │   │
+│   │   ├── layout/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   └── Breadcrumb.jsx
+│   │   │
+│   │   ├── forms/
+│   │   ├── cards/
+│   │   ├── tables/
+│   │   ├── charts/
+│   │   ├── modals/
+│   │   ├── loaders/
+│   │   ├── notifications/
+│   │   └── profile/
+│   │
+│   ├── features/
+│   │
+│   │   ├── auth/
+│   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   ├── pages/
+│   │   │   ├── services/
+│   │   │   └── utils/
+│   │   │
+│   │   ├── dashboard/
+│   │   │   ├── admin/
+│   │   │   ├── hr/
+│   │   │   ├── employee/
+│   │   │   └── shared/
+│   │   │
+│   │   ├── employees/
+│   │   │   ├── components/
+│   │   │   ├── pages/
+│   │   │   ├── hooks/
+│   │   │   └── services/
+│   │   │
+│   │   ├── attendance/
+│   │   ├── leave/
+│   │   ├── payroll/
+│   │   ├── recruitment/
+│   │   ├── departments/
+│   │   ├── announcements/
+│   │   ├── reports/
+│   │   ├── profile/
+│   │   └── settings/
+│   │
+│   ├── layouts/
+│   │   ├── DashboardLayout.jsx
+│   │   ├── AuthLayout.jsx
+│   │   ├── LandingLayout.jsx
+│   │   └── ErrorLayout.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   ├── Contact.jsx
+│   │   ├── PrivacyPolicy.jsx
+│   │   ├── Terms.jsx
+│   │   ├── NotFound.jsx
+│   │   └── ServerError.jsx
+│   │
+│   ├── routes/
+│   │   ├── AppRoutes.jsx
+│   │   ├── PublicRoute.jsx
+│   │   ├── ProtectedRoute.jsx
+│   │   ├── AdminRoute.jsx
+│   │   ├── HRRoute.jsx
+│   │   └── EmployeeRoute.jsx
+│   │
+│   ├── services/
+│   │   ├── api.js
+│   │   ├── axios.js
+│   │   ├── auth.service.js
+│   │   ├── employee.service.js
+│   │   ├── attendance.service.js
+│   │   ├── payroll.service.js
+│   │   ├── leave.service.js
+│   │   └── report.service.js
+│   │
+│   ├── hooks/
+│   │   ├── useAuth.js
+│   │   ├── useFetch.js
+│   │   ├── useDebounce.js
+│   │   ├── useTheme.js
+│   │   ├── usePagination.js
+│   │   └── useLocalStorage.js
+│   │
+│   ├── context/
+│   │   ├── AuthContext.jsx
+│   │   ├── ThemeContext.jsx
+│   │   ├── SidebarContext.jsx
+│   │   └── NotificationContext.jsx
+│   │
+│   ├── store/
+│   │   ├── index.js
+│   │   ├── authSlice.js
+│   │   ├── employeeSlice.js
+│   │   ├── attendanceSlice.js
+│   │   ├── leaveSlice.js
+│   │   ├── payrollSlice.js
+│   │   └── reportSlice.js
+│   │
+│   ├── constants/
+│   │   ├── roles.js
+│   │   ├── permissions.js
+│   │   ├── routes.js
+│   │   ├── api.js
+│   │   └── status.js
+│   │
+│   ├── utils/
+│   │   ├── helpers.js
+│   │   ├── validator.js
+│   │   ├── formatter.js
+│   │   ├── storage.js
+│   │   ├── date.js
+│   │   └── export.js
+│   │
+│   ├── styles/
+│   │   ├── globals.css
+│   │   ├── variables.css
+│   │   ├── utilities.css
+│   │   ├── animations.css
+│   │   └── themes/
+│   │
+│   ├── config/
+│   │   ├── env.js
+│   │   ├── navigation.js
+│   │   ├── sidebar.js
+│   │   └── theme.js
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── docs/
+│   ├── API.md
+│   ├── CONTRIBUTING.md
+│   ├── PROJECT_STRUCTURE.md
+│   ├── DEPLOYMENT.md
+│   └── CHANGELOG.md
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── e2e/
+│
+├── .env
+├── .env.example
+├── .editorconfig
+├── .gitignore
+├── .prettierrc
+├── .eslintrc.cjs
+├── eslint.config.js
+├── jsconfig.json
+├── package.json
+├── package-lock.json
+├── vite.config.js
+├── README.md
+├── LICENSE
+└── CONTRIBUTING.md
 
 ---
 
