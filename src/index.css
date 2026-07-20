@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-panel-in {
+  animation: panel-in 0.16s ease-out;
+  transform-origin: top right;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+user-select: none;
+  --bg-secondary: #13162a;
+  --text-primary: #f1f5f9;
+  --border-primary: #1e2235;
+}
+
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #0f172a;
+  --border-primary: #e2e8f0;
+}
+
+:root[data-theme="dark"] {
+  --bg-primary: #10111c;
+  --bg-secondary: #13162a;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-primary: #1e2235;
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-primary: #e2e8f0;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
+
+}:root[data-theme="light"] [class*="bg-[#0B0C14]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#0F111A]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#0F1324]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#0d0f14]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#0f0f0f]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#101010]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#10111C]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#10141f]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#111827]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#12162d]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#12172A]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#121827]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#13141F]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#13162A]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#131827]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#141414]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#14151c]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#141B33]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#151822]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#151826]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#151828]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#151933]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#151A30]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#151B36]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#151a2f]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#151c2e]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#16161f]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#161B2E]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#161D35]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#161c34]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#171821]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#171823]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#171A27]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#171C36]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#171b35]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#181818]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#181C2E]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#191919]"] { background-color: #ffffff !important; }
+:root[data-theme="light"] [class*="bg-[#191b2c]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#191c28]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1A1A1A]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1A1D2E]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1A1F35]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1A2033]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1A2035]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1D243A]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1E2235]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1a1a1a]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1a1f2e]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1a2238]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1b1b1b]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1b1c23]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1b1c28]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1b1d24]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1c1c1c]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1d1d1d]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1d2028]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#1e2333]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#1f222985]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#21131639]"] { background-color: #f8fafc !important; }
+:root[data-theme="light"] [class*="bg-[#22252d]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#232844]"] { background-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="bg-[#252525]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#262626]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="bg-[#262b36]"] { background-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="bg-[#3a4150]"] { background-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="bg-[#3b2d18]"] { background-color: #f1f5f9 !important; }
+:root[data-theme="light"] [class*="border-[#1A2035]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#1A2138]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#1E2235]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#1E2337]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#1F2937]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#1a2035]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#1c2237]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#1e2333]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#202020]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#20263A]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#20263a]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#22263C]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#22273b]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#222B45]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#232946]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#252B45]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#262626]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#272727]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#2A314B]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#2A314D]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#2A3350]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#2B3148]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#2E354D]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#2a3347]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#2b2b2b]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#2d2d2d]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="border-[#343948]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#383838]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#3a3a3a]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#525252]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="border-[#6f2b3a]"] { border-color: #cbd5e1 !important; }
+:root[data-theme="light"] [class*="divide-[#1A2035]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="divide-[#1e2333]"] { border-color: #e2e8f0 !important; }
+:root[data-theme="light"] [class*="placeholder-[#2a3244]"]::placeholder { color: #94a3b8 !important; opacity: 1; }
+:root[data-theme="light"] [class*="placeholder-[#64748b]"]::placeholder { color: #64748b !important; opacity: 1; }
+:root[data-theme="light"] [class*="text-[#2a3244]"] { color: #94a3b8 !important; }
+:root[data-theme="light"] [class*="text-[#3D4466]"] { color: #94a3b8 !important; }
+:root[data-theme="light"] [class*="text-[#3b4a5e]"] { color: #94a3b8 !important; }
+:root[data-theme="light"] [class*="text-[#475569]"] { color: #94a3b8 !important; }
+:root[data-theme="light"] [class*="text-[#64748B]"] { color: #64748b !important; }
+:root[data-theme="light"] [class*="text-[#64748b]"] { color: #64748b !important; }
+:root[data-theme="light"] [class*="text-[#7F8499]"] { color: #64748b !important; }
+:root[data-theme="light"] [class*="text-[#94A3B8]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#94a3b8]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#9CA3AF]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#9aa5b8]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#A0AEC0]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#CBD5E1]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#F1F5F9]"] { color: #0f172a !important; }
+:root[data-theme="light"] [class*="text-[#adadad]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#b7b6b6]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#b8c1d1]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#bebebe]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#c3c3c3]"] { color: #334155 !important; }
+:root[data-theme="light"] [class*="text-[#dfdfe0]"] { color: #0f172a !important; }
+:root[data-theme="light"] [class*="text-[#ebecec]"] { color: #0f172a !important; }
+:root[data-theme="light"] [class*="text-[#f1f5f9]"] { color: #0f172a !important; }
+:root[data-theme="light"] [class*="text-[#fefefe]"] { color: #0f172a !important; }
+
+/* ------------------------------------------------------------
+   Payslip printing: "Download PDF" triggers window.print(). This
+   hides everything except the payslip card, so the browser's own
+   print-to-PDF produces a clean single document instead of the
+   whole dashboard chrome.
+   ------------------------------------------------------------ */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .payslip-print-area,
+  .payslip-print-area * {
+    visibility: visible;
+  }
+  .payslip-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    border: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
